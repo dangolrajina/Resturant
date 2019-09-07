@@ -21,7 +21,7 @@
                     <h2>Form</h2>
                 </div>
                 <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
-                        @csrf
+                        @csrf 
                 <div class="form-group">
                    
                     <label for="email" class="col-sm-3 control-label">Email* </label>

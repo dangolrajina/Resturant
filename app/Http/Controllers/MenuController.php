@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Menu;
+use App\Order;
+use Auth;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -149,5 +151,10 @@ class MenuController extends Controller
     {
         $menu->delete();
          return redirect('/admin/menu');
+    }
+
+    public function order(Request $request)
+    {
+       
     }
 }

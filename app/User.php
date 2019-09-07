@@ -48,7 +48,6 @@ class User extends Authenticatable
 	public function reservation()
     {
         return $this->hasMany(Reservations::class,'user_id');
-        // Ensuring that the users_id is set a the foreign key in userprofile
     }
 	   /**
      * Mark the user's account as confirmed.
@@ -58,4 +57,22 @@ class User extends Authenticatable
         $this->confirmed = true;
         $this->save();
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role'); 
+    }
+
+    public function hasAnyRoles($roles)
+    {
+          return !! $this->roles()->whereIn('name',$roles)->first();  
+    }
+
+    public function hasAnyRole($roles)
+    {
+        return !! $this->roles()->where('name',$roles)->first();  
+    }
+
 }
+
+

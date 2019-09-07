@@ -89,6 +89,12 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
+          <a class="nav-link" href="/admin/user">
+            <i class="fas fa-fw fa-user"></i>
+            <span>User</span></a>
+          </li>
+
+        <li class="nav-item">
           <a class="nav-link" href="/admin/categories">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Categories</span></a>
@@ -99,6 +105,13 @@
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Menus</span></a>
           </li>
+
+          <li class="nav-item">
+          <a class="nav-link" href="/admin/order">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Orders</span></a>
+          </li>
+
 
           <li class="nav-item">
           <a class="nav-link" href="/admin/reservation">

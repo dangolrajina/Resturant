@@ -39,7 +39,7 @@
     <body>
        <div id="app">
         
-       <div id="preloader">
+       {{-- <div id="preloader">
         
             <div class="loader absolute-center">
                 <div class="loader__box"><b class="top"></b></div>
@@ -47,7 +47,7 @@
                 <div class="loader__box"><b class="top"></b></div>
             </div>
         </div>
-               
+                --}}
        
         <!--================ Frist hader Area =================-->
         <div class="first_header">
@@ -61,7 +61,7 @@
                     </div>
                     <div class="col-md-8">
                         <div class="event_btn_inner">
-                            <a class="event_btn" href="table.html"><i class="fa fa-table" aria-hidden="true"></i>Book a Table</a>
+                            <a class="event_btn" href="/reservations"><i class="fa fa-table" aria-hidden="true"></i>Book a Table</a>
                             
                             @guest
                                 <a class="event_btn" href="/register"><i class="fa fa-sign-in" aria-hidden="true"></i>Register</a>
@@ -88,7 +88,7 @@
         </div>
     </div>
         
-        <header class="main_menu_area">
+        <header class="main_menu_area" style="    overflow: hidden;">
             <nav class="navbar navbar-default">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -119,7 +119,7 @@
                             <li class="dropdown submenu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="menu-grid.html">Menu Grid</a></li>
+                                    <li><a href="/menu">Menu Grid</a></li>
                             
                                 </ul>
                             </li>
@@ -248,7 +248,6 @@
         <script src="{{asset('front/vendors/countdown/jquery.countdown.js')}}"></script>
         <script src="{{asset('front/vendors/js-calender/zabuto_calendar.min.js')}}"></script>
         <script src="{{asset('front/js/theme.js')}}"></script>
-        
 
     </body>
 </html>

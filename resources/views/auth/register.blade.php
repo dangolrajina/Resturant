@@ -2,6 +2,16 @@
 
 @section('data')
 
+
+ <section class="banner_area">
+            <div class="container">
+                <div class="banner_content">
+                    <h4>About Us</h4>
+                    
+                </div>
+            </div>
+        </section>
+        
 <section class="booking_table_area booking_area_white" style="padding-top: 190px;">
     <div class="container">
         <div class="s_black_title">

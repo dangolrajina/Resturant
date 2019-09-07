@@ -8,7 +8,7 @@
 
 	<form method="POST" action="/admin/menu/edit/{{ $menu->id }}">
 		@csrf
-		@method('PATCH')
+		
 		<div class="modal-body">
 			<div class="form-group">
 				<label for="name">Name</label>

@@ -9,7 +9,7 @@ class ReservationsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -27,7 +27,10 @@ class ReservationsController extends Controller
            'reservations' =>  $reservations
        ]);
     }
-
+    public function viewReservation()
+    {
+        return view('reservations.index');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -56,19 +59,24 @@ class ReservationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $reservation = request()->validate([
+               'phone_number' => 'required',
+               'total_ppl' => 'required',
+               'date' => 'required',
+               'time' => 'required',
+               'description' => 'required'
+        ]);
+        Reservations::create([
+            'user_id' => auth()->id(),
+               'phone_number' => request('phone_number'),
+               'total_ppl' => request('total_ppl'),
+               'date' => request('date'),
+               'time' => request('time'),
+               'description' => request('description')
+        ]);
+        return redirect('/');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Reservations  $reservations
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Reservations $reservations)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -104,3 +112,4 @@ class ReservationsController extends Controller
         //
     }
 }
+
