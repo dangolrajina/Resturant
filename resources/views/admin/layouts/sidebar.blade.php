@@ -14,7 +14,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/admin">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
         </li>
@@ -119,6 +119,11 @@
             <span>Reservation</span></a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/contact">
+              <i class="far fa-address-book"></i>
+              <span>Contact</span></a>
+          </li>
           <!-- Nav Item - Tables -->
           <li class="nav-item">
             <a class="nav-link" href="tables.html">

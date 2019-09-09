@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Menu;
-use App\Order;
 use Auth;
+use Session;
+use DB;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -77,7 +78,7 @@ class MenuController extends Controller
             'category_id' => request('category_id'),
             'menu_image' => $fileNameToStore
         ]);
-        return redirect('/admin/menu');
+        return redirect('/admin/menu')->with('flash_message_success','Menu added successfully');
 
 
     }
@@ -153,8 +154,45 @@ class MenuController extends Controller
          return redirect('/admin/menu');
     }
 
-    public function order(Request $request)
+    public function addtoorder(Request $request)
     {
-       
+        $data = $request->all();
+       if(empty(Auth::User()->email)){
+            $data['user_email']='';
+        }else{
+            $data['user_email'] = Auth::User()->email;
+        }
+
+        $session_id = Session::get('session_id');
+        if(!isset($session_id)){
+            $session_id = str_random(20);
+            Session::put('session_id', $session_id);
+        }
+        DB::table('cart')->insert(['name'=>$data['name'],'price'=>$data['price'],'quantity'=>$data['quantity'],'session_id'=>$session_id]);
+
+        return redirect('cart')->with('flash_message_success','Products added to cart!');
+
+    }
+
+    public function cart()
+    {
+        $session_id = Session::get('session_id');
+        $usercart = DB::table('cart')->where(['session_id'=>$session_id])->get();
+        foreach($usercart as $key => $product){
+            $productDetails = DB::table('cart')->where('id',$product->id)->first();
+            // $usercart[$key]->image = $productDetails->image;
+        }
+            return view('cart.cart')->with(compact('usercart'));
+    }
+
+    public function vieworder()
+    {
+        $orders = DB::table('cart')->latest()->get();
+        // foreach($orders as $key => $product){
+        //     $orders = DB::table('cart')->where('id',$product->id)->first();
+        //     // $usercart[$key]->image = $productDetails->image;
+        // }
+        return view('admin.order.order',compact('orders'));
+
     }
 }

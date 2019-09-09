@@ -51,6 +51,7 @@
                     </div>
                   </div>
                 </form>
+                {{-- @include('layouts.session') --}}
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
@@ -235,6 +236,11 @@
         <!-- Page level custom scripts -->
         <script src="{{ asset('backend/js/demo/chart-area-demo.js')}}"></script>
         <script src="{{ asset('backend/js/demo/chart-pie-demo.js')}}"></script>
+        <script>
+              $(document).ready( function () {
+              $('div.alert').not('.alert-important').delay(2000).fadeOut(450);
+          });
+        </script>
 
       </body>
 

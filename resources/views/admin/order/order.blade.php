@@ -3,7 +3,8 @@
 @section('content')
 	<div class="container-fluid">
       <!-- Page Heading -->
-      <h1 class="h3 mb-2 text-gray-800">Menus</h1>
+      <h1 class="h3 mb-2 text-gray-800">Orders</h1>
+      @include('admin.layouts.session')
 	          <!-- DataTales Example -->
 	    <div class="card shadow mb-4">
 	        <div class="card-header py-3">
@@ -39,23 +40,23 @@
 	             		
 	                  <tbody>
 	                  	
-	                  	{{-- @foreach($menus as $key=>$menu) --}}
+	                  	@foreach($orders as $key=>$order)
 		                  	<tr role="row" class="odd">
-		                      <td class="sorting_1">{{-- {{ ++$key}} --}}</td>
-		                      <td>{{-- {{ $menu->name }} --}}</td>
-		                      <td>{{-- {{ $menu->price }} --}}</td>
-		                      <td><img src="{{-- /storage/menu_images/{{ $menu->menu_image} --}}}" style="    width: 54px;"></td>
+		                      <td class="sorting_1">{{ ++$key}}</td>
+		                      <td>{{ $order->name }}</td>
+		                      <td>{{ $order->price }}</td>
+		                      <td><img src="{{-- /storage/menu_images/{{ $menu->menu_image}} --}}" style="    width: 54px;"></td>
 		                      <td style="display: flex;">
-		                      	<a href="{{-- /admin/menu/edit/{{ $menu->id }} --}}" class="btn btn-primary text-gray-800">Edit</a>
+		                      	<a href="/admin/order/edit/{{ $order->id }}" class="btn btn-primary text-gray-800">Edit</a>
 		                      	&nbsp;
-		                      	<form method="POST" action="{{-- /admin/menu/delete/{{ $menu->id }} --}}">
+		                      	<form method="POST" action="/admin/order/delete/{{ $order->id }}">
 		                      		@csrf
 		                      		@method('DELETE')
 		                      		<button type="submit" class="btn btn-danger text-gray-800">Delete</button>
 		                      	</form>
 		                      </td>
 		                    </tr>
-	                   {{--  @endforeach --}}
+	                    @endforeach
 	                </tbody>
 	                </table>
 	            </div>

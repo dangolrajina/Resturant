@@ -36,31 +36,33 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($orders as $order)
+					<?php $total_amount = 0; ?>
+					@foreach($usercart as $order)
 					<tr>
 						<td class="cart_product">
 							<a href=""><img style="width:100px;" src="" alt=""></a>
 						</td>
 						<td class="cart_description">
-							<h4><a href="">{{$order->menu_name}}</a></h4>
+							<h4><a href="">{{$order->name}}</a></h4>
 						</td>
 						<td class="cart_price">
 							<p>{{$order->price}}</p>
 						</td>
 						<td class="cart_quantity">
 							<div  class="cart_quantity_button">
-								<a class="cart_quantity_up" href=""> + </a>
-								<input class="cart_quantity_input" type="text" name="quantity" value="2"autocomplete="off" size="2">
-								<a class="cart_quantity_down" href=""> - </a>
+								{{-- <a class="cart_quantity_up" href=""> + </a> --}}
+								<input class="cart_quantity_input" type="text" name="quantity" value="1"autocomplete="off" size="2">
+								{{-- <a class="cart_quantity_down" href=""> - </a> --}}
 							</div>
 						</td>
 						<td class="cart_total">
-							<p class="cart_total_price"></p>
+							<p class="cart_total_price">Rs.{{$order->price*$order->quantity}}</p>
 						</td>
 						<td class="cart_delete">
 							<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
 						</td>
 					</tr>
+					<?php $total_amount = $total_amount + ($order->price*$order->quantity); ?>
 					@endforeach
 				</tbody>
 			</table>
@@ -76,10 +78,10 @@
 			<div class="col-sm-6">
 				<div class="total_area">
 					<ul>
-						<li>Grand Total<span></span></li>
+						<li>Grand Total <span>Rs <?php echo $total_amount; ?> </span></li>
 					</ul>
 					<a class="btn btn-default update" href="">Update</a>
-					<a class="btn btn-default check_out" href="">Check Out</a>
+					<a class="btn btn-default check_out" href="{{url('/')}}">Check Out</a>
 				</div>
 			</div>
 		</div>

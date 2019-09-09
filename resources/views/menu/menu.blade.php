@@ -27,9 +27,9 @@
                             
                             @foreach($menus as $menu)
 
-                            <form action="{{ url('/cart') }}" method="POST">
+                            <form action="{{ url('/add-cart') }}" method="POST">
                                 @csrf
-                                <input type="hidden" name="menu_name" value="{{ $menu->name }}">
+                                <input type="hidden" name="name" value="{{ $menu->name }}">
                                 <input type="hidden" name="price" value="{{ $menu->price }}">
                                 <input type="hidden" name="quantity" value="1">
                             <div class="media">

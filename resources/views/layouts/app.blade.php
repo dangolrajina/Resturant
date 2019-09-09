@@ -123,9 +123,10 @@
                             
                                 </ul>
                             </li>
+                            <li class="hide"></li>
                             <li><a href="gallery.html">Gallery</a></li>
                              
-                            <li><a href="contact.html">Contact US</a></li>
+                            <li><a href="/contact">Contact US</a></li>
                             <li><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -140,11 +141,11 @@
                                         <i class="fas fa-search h4 text-body"></i>
                                     </div>
                                     <!--end of col-->
-                                    <div class="col" style="margin-top: -38px;">
+                                    <!-- <div class="col" style="margin-top: -38px;">
                                         <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords">
                                     </div>
                                     <!--end of col-->
-                                    <div class="col-auto">
+                                   <!-- ?<div class="col-auto">
                                         <button class="btn btn-lg btn-success" type="submit" style="margin-left: 660px;margin-top: -65px;">Search</button>
                                     </div>
                                     <!--end of col-->

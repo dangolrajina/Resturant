@@ -74,7 +74,7 @@ class ReservationsController extends Controller
                'time' => request('time'),
                'description' => request('description')
         ]);
-        return redirect('/');
+        return redirect('/')->with('flash_message_success','Table Bokked Successfully');
     }
 
 

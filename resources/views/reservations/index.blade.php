@@ -56,26 +56,7 @@
                     </ul>
                 </div>
                 @endif
-                <div class="row map_contact">
-                    <div class="col-md-6">
-                        <div class="map_area">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387145.8666396062!2d-74.25819367467702!3d40.70531099097622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sbd!4v1489317146051" style="border:0"></iframe>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="map_contact_info">
-                            <h3>Contact Information</h3>
-                            <p>This section collects information about different ways to contact you. This information is important early in the application process if you're ....</p>
-                            <ul>
-                                <li><a href="#"><span>Address:</span>Kathmandu-Baneshwor 200</a></li>
-                                <li><a href="#"><span>Phone:</span>+0 000-000-0000</a></li>
-                                <li><a href="#"><span>Email</span> support@themeXart.com</a></li>
-                            </ul>
-                            <h4>Opening Times</h4>
-                            <h5>Monday - Friday 8am - 10pm</h5>
-                            <h5>Saturday 2pm - 10pm | Sunday 10am - 10pm</h5>
-                        </div>
-                    </div>
+               
                 </div>
             </div>
         </section>
