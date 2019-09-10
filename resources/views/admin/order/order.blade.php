@@ -4,7 +4,6 @@
 	<div class="container-fluid">
       <!-- Page Heading -->
       <h1 class="h3 mb-2 text-gray-800">Orders</h1>
-      @include('admin.layouts.session')
 	          <!-- DataTales Example -->
 	    <div class="card shadow mb-4">
 	        <div class="card-header py-3">
@@ -30,22 +29,42 @@
 	                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 	                  <thead>
 	                    <tr role="row">
-	                    	<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 219px;">S.N</th>
-	                    	<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 328px;">Name</th>
-	                    	<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 161px;">Price</th>
-	                    	<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 161px;">Image</th>
+	                    	<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 219px;">Order ID</th>
+	                    	<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 328px;">Order Date</th>
+	                    	<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 161px;">Customer Name</th>
+	                    	<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 161px;">Customer Email</th>
+	                    	<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 161px;">Ordered Product</th>
+	                    	<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 161px;">Ordered Quantity</th>
+	                    	<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 161px;">Amount</th>
+	                    	<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 161px;">Order Status</th>
+	                    	<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 161px;">Payment Method</th>
 	                    	<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 161px;">Action</th>
 	                    </tr>
 	                  </thead>
 	             		
 	                  <tbody>
 	                  	
-	                  	@foreach($orders as $key=>$order)
+	                  	@foreach($orders as $order)
 		                  	<tr role="row" class="odd">
-		                      <td class="sorting_1">{{ ++$key}}</td>
-		                      <td>{{ $order->name }}</td>
-		                      <td>{{ $order->price }}</td>
-		                      <td><img src="{{-- /storage/menu_images/{{ $menu->menu_image}} --}}" style="    width: 54px;"></td>
+		                      {{-- <td class="sorting_1"></td> --}}
+		                      <td>{{$order->id}}</td>
+									<td>{{$order->created_at}}</td>
+									<td>{{$order->name}}</td>
+									<td>{{$order->user_email}}</td>
+									<td>
+									{{$order->menu_name}}
+									</td>
+									{{-- <td>
+										@foreach($order->orders as $item)
+											{{$item->product_qty}}<br>
+										@endforeach
+									</td> --}}
+									<td></td>
+									<td>{{$order->grand_total}}</td>
+									<td>{{$order->order_status}}</td>
+									<td>{{$order->payment_method}}</td>
+	
+		                      
 		                      <td style="display: flex;">
 		                      	<a href="/admin/order/edit/{{ $order->id }}" class="btn btn-primary text-gray-800">Edit</a>
 		                      	&nbsp;

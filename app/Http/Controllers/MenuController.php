@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Menu;
+use App\User;
+use App\DeliveryAddresses;
+use App\Order;
 use Auth;
 use Session;
 use DB;
-use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
@@ -185,14 +188,119 @@ class MenuController extends Controller
             return view('cart.cart')->with(compact('usercart'));
     }
 
-    public function vieworder()
+    public function updateCartQuantity($id=null, $quantity=null)
     {
-        $orders = DB::table('cart')->latest()->get();
-        // foreach($orders as $key => $product){
-        //     $orders = DB::table('cart')->where('id',$product->id)->first();
-        //     // $usercart[$key]->image = $productDetails->image;
-        // }
-        return view('admin.order.order',compact('orders'));
+        $cart = DB::table('cart')->where('id', $id)->first();
+        echo $updatecart = $cart->quantity+$quantity;
+        if($updatecart >= $quantity){
+            DB::table('cart')->where('id',$id)->increment('quantity',$quantity);
+            return redirect('cart');
+        }
+        else{
+            DB::table('cart')->where('id',$id)->decrement('quantity',$quantity);
+            return redirect('cart');
+        }
 
+    }
+    public function deletecartproduct($id=null){
+        DB::table('cart')->where('id',$id)->delete();
+         return redirect('cart');
+
+    }
+
+    public function checkout(Request $request){
+
+        $user_id = Auth::User()->id;
+        $user_email = Auth::User()->email;
+        $userDetails = User::find($user_id);
+
+        $session_id = Session::get('session_id');
+        DB::table('cart')->where('session_id',$session_id)->update(['user_email'=>$user_email]);
+
+        if($request->isMethod('post')){
+            $data = $request->all();
+
+             $address = new DeliveryAddresses;
+             $address->user_id = $user_id;
+             $address->user_email = $user_email;
+             $address->name = $data['billing_name'];
+             $address->address = $data['billing_address'];
+             $address->city = $data['billing_city'];
+             $address->phone = $data['billing_mobile'];
+             $address->save();
+
+             return redirect()->action('MenuController@orderReview');
+        }
+
+        return view('cart.checkout',compact('userDetails'));
+    }
+
+    public function orderReview(Request $request){
+
+        $user_id = Auth::User()->id;
+        $user_email = Auth::User()->email;
+        $userCart = User::where('id',$user_id)->first();
+
+        $userCart = DB::table('cart')->where('user_email', $user_email)->get();
+        foreach ($userCart as $key => $food) {
+            $foodDetails = Menu::where('id',$food->name)->get();
+        }
+
+        return view('cart.order-review',compact('userCart'));
+    }
+
+    public function placeOrder(Request $request){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            $user_id = Auth::User()->id;
+            $user_email = Auth::User()->email;
+
+            $addressDetail = DeliveryAddresses::where(['user_email'=>$user_email])->first();
+
+            $order = new Order;
+            $order->user_id = $user_id;
+            $order->user_email = $user_email;
+            $order->user_email = $user_email;
+            $order->name = $addressDetail->name;
+            $order->address = $addressDetail->address;
+            $order->city = $addressDetail->city;
+            $order->phone = $addressDetail->phone;
+            $order->order_status = "New";
+            $order->payment_method = $data['payment_method'];
+            $order->grand_total = $data['grand_total'];
+            $order->save();
+
+
+            if($data['payment_method']=="COD"){
+                $productdetails = Order::get();
+                $productdetails = json_decode(json_encode($productdetails),true);
+                // echo "<pre>"; print_r($productdetails); die;
+                
+                $userDetails = User::where('id',$user_id)->first();
+                $userDetails = json_decode(json_encode($userDetails),true);
+                // echo "<pre>"; print_r($userDetails); die;
+
+                /* Code for Order Email Start */
+               
+                return redirect('/thanks');
+            }
+
+        }
+
+    }
+
+    public function thanks(){
+        $user_email = Auth::User()->email;
+        DB::table('cart')->where(['user_email'=>$user_email])->delete();
+        return view('cart.thanks');
+    }
+
+    //ADmin order view//
+    public function viewOrder()
+    {
+        $orders = Order::get();
+        
+        // echo "<pre>"; print_r($orders); die;
+        return view('admin.order.order')->with(compact('orders'));
     }
 }

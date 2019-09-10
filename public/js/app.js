@@ -1844,6 +1844,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['message'],
   data: function data() {
@@ -30764,6 +30767,12 @@ var render = function() {
         { name: "show", rawName: "v-show", value: _vm.show, expression: "show" }
       ],
       staticClass: "alert alert-info alert-flash",
+      staticStyle: {
+        "z-index": "100",
+        "font-size": "27px",
+        "margin-top": "68px",
+        padding: "14px"
+      },
       attrs: { role: "alert" }
     },
     [_vm._v("\n    " + _vm._s(_vm.body) + "\n")]

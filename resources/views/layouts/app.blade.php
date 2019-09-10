@@ -26,6 +26,7 @@
         <link href="{{ asset('front/vendors/bootatrap-date-time/bootstrap-datetimepicker.min.css')}}" rel="stylesheet">
         <link href="{{ asset('front/vendors/owl-carousel/assets/owl.carousel.css')}}" rel="stylesheet">
         
+        <link href="{{ asset('front/css/main.css')}}" rel="stylesheet">
         <link href="{{ asset('front/css/style.css')}}" rel="stylesheet">
         <link href="{{ asset('front/css/responsive.css')}}" rel="stylesheet">
          <script>
@@ -37,6 +38,7 @@
         </script>
     </head>
     <body>
+       
        <div id="app">
         
        {{-- <div id="preloader">
@@ -59,7 +61,7 @@
                             
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-offset-3 col-md-5">
                         <div class="event_btn_inner">
                             <a class="event_btn" href="/reservations"><i class="fa fa-table" aria-hidden="true"></i>Book a Table</a>
                             
@@ -107,26 +109,18 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active">
+                            <li class="{{ Request::is('/')?'active':''}}">
                                 <a href="/">Home</a>
                             </li>
-                            <li class="dropdown submenu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About US <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/about-us">About Us</a></li>
-                                </ul>
+                            <li class="{{ Request::is('about-us')?'active':''}}">
+                                <a href="/about-us">About Us</a>
                             </li>
-                            <li class="dropdown submenu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/menu">Menu Grid</a></li>
-                            
-                                </ul>
+                            <li class="{{ Request::is('menu')?'active':''}}">
+                                <a href="/menu">Menu</a>
                             </li>
-                            <li class="hide"></li>
-                            <li><a href="gallery.html">Gallery</a></li>
-                             
-                            <li><a href="/contact">Contact US</a></li>
+                           
+                            <li class="{{ Request::is('contact')?'active':''}}">
+                                <a href="/contact">Contact US</a></li>
                             <li><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -201,16 +195,7 @@
                                 </ul>
                             </aside>
                         </div>
-                        <div class="col-md-3">
-                            <aside class="f_widget gallery_widget">
-                                <div class="f_w_title">
-                                    <h4>Gallery On Flickr</h4>
-                                </div>
-                                <ul>
-                                   
-                                </ul>
-                            </aside>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

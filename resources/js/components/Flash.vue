@@ -1,5 +1,8 @@
 <template>
-    <div class="alert alert-info alert-flash" role="alert" v-show="show">
+    <div class="alert alert-info alert-flash" role="alert" v-show="show" style="z-index: 100;
+    font-size: 27px;
+    margin-top: 68px;
+    padding: 14px;">
         {{ body }}
     </div>
 </template>

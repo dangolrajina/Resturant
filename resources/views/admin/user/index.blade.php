@@ -37,7 +37,8 @@
 	                    <tr role="row">
 	                    	<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 219px;">S.N</th>
 	                    	<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 328px;">UserName</th>
-	                    	<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 161px;">Role</th>
+	                    	
+	                    	<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 161px;">Total Paid</th>
 	                    	<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 161px;">Action</th>
 	                  </tr></thead>
 	             		
@@ -47,9 +48,10 @@
 		                  		<tr role="row" class="odd">
 		                  			<td>{{ ++$key }}</td>
 		                  			<td>{{ $user->name }}</td>
-		                  			<td>{{ implode(', ',$user->roles()->get()->pluck('name')->toArray())}}</td>
+		                  			
+		                  			<td>{{ $user->grand_total }}</td>
 		                  			<td>
-		                  				<a href="/admin/user/{{ $user->id }}" class="btn btn-primary">Edit</a>
+		                  				<a href="/admin/user/{{ $user->id }}" class="btn btn-primary">Edit Role</a>
 		                  			</td>
 		                  		</tr>
                   			@endforeach

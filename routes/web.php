@@ -7,8 +7,11 @@ Route::get('/about-us', 'HomeController@about');
 
 
 Route::get('/menu','HomeController@menu');
+
 Route::match(['get','post'],'/add-cart','MenuController@addtoorder');
 Route::match(['get','post'],'/cart','MenuController@cart');
+Route::get('/cart/update-quantity/{id}/{quantity}','MenuController@updateCartquantity');
+Route::get('/cart/delete-cart/{id}','MenuController@deletecartproduct');
 
 Route::get('/contact','ContactController@index');
 Route::post('/contact','ContactController@store');
@@ -17,7 +20,15 @@ Route::get('/reservations','ReservationsController@viewReservation');
 Route::post('/reservations', 'ReservationsController@store');
 
 
+Route::get('/menu/{category}','HomeController@menu');
 Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->name('register.confirm');
+
+//Checkout//
+Route::match(['get','post'],'/checkout','MenuController@checkout');
+Route::match(['get','post'],'/order-review','MenuController@orderReview');
+
+Route::match(['get','post'],'/place-order','MenuController@placeOrder');
+Route::get('/thanks','MenuController@thanks');
 
 // ADMIN KO LAGI
 Route::prefix('admin')->middleware(['auth','admin'])->name('admin')->group(function(){
@@ -38,8 +49,9 @@ Route::prefix('admin')->middleware(['auth','admin'])->name('admin')->group(funct
 	Route::get('/menu/edit/{menu}', 'MenuController@edit');
 	Route::post('/menu/edit/{menu}', 'MenuController@update');
 	Route::delete('/menu/delete/{menu}', 'MenuController@destroy');
+
 	//For Order
-	Route::get('/order','MenuController@vieworder');
+	Route::get('/order','MenuController@viewOrder');
 
 
 
@@ -52,3 +64,4 @@ Route::prefix('admin')->middleware(['auth','admin'])->name('admin')->group(funct
 
 
 });
+Route::get('/{category}','HomeController@view');

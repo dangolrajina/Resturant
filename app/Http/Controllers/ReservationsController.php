@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Reservations;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReservationsController extends Controller
@@ -18,7 +19,8 @@ class ReservationsController extends Controller
      */
     public function index()
     {
-
+         //    $carbon = Carbon::now()->format('Y-m-d');
+         // return Reservations::where('date',$carbon)->count();
         $reservations =\DB::table('reservations')
         ->join('users', 'users.id', '=', 'reservations.user_id')
         ->select('reservations.*', 'users.name')
@@ -29,6 +31,7 @@ class ReservationsController extends Controller
     }
     public function viewReservation()
     {
+        
         return view('reservations.index');
     }
     /**
@@ -66,14 +69,21 @@ class ReservationsController extends Controller
                'time' => 'required',
                'description' => 'required'
         ]);
-        Reservations::create([
-            'user_id' => auth()->id(),
+        $carbon = Carbon::now()->format('Y-m-d');
+        $reservation = Reservations::where('date',$carbon)->count();
+        if($reservation > 5){
+            return redirect('/')->with('flash','Sorry, table are unavailable at this moment...');
+        }else{
+            Reservations::create([
+                'user_id' => auth()->id(),
                'phone_number' => request('phone_number'),
                'total_ppl' => request('total_ppl'),
                'date' => request('date'),
                'time' => request('time'),
                'description' => request('description')
-        ]);
+            ]);
+            
+        }
         return redirect('/')->with('flash_message_success','Table Bokked Successfully');
     }
 

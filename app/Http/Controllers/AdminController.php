@@ -25,8 +25,10 @@ class AdminController extends Controller
        */
       public function index()
       {
-       
-        return view('admin.admin');
+        $users = \DB::table('users')
+                     ->join('orders', 'users.id', '=', 'orders.user_id')
+                     ->get();
+        return view('admin.admin',compact('users'));
       }
    
     /**

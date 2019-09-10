@@ -24,8 +24,8 @@
                         @csrf 
                 <div class="form-group">
                    
-                    <label for="email" class="col-sm-3 control-label">Email* </label>
-                    <div class="col-sm-9">
+                    <label for="email" class="col-sm-5 control-label">Email* </label>
+                    <div class="col-sm-3">
                         <input type="email" id="email" placeholder="Email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
                         @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -35,8 +35,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password" class="col-sm-3 control-label">Password*</label>
-                    <div class="col-sm-9">
+                    <label for="password" class="col-sm-5 control-label">Password*</label>
+                    <div class="col-sm-3">
                         <input type="password" id="password" placeholder="Password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                                 @if ($errors->has('password'))
@@ -48,10 +48,10 @@
                 </div>
                
                                 <div class="form-group ">
-                                    <label class="col-sm-3 control-label" for="remember">
+                                    <label class="col-sm-5 control-label" for="remember">
                                         {{ __('Remember Me') }}
                                     </label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-3">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -61,7 +61,7 @@
                         </div>
                
 
-                <button type="submit" value="submit" style="margin-left: 295px;" class="btn btn-primary">Login</button>
+                <button type="submit" value="submit" style="margin-left: 494px;" class="btn btn-primary">Login</button>
             </form> 
             </div>
         </section>

@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use App\Order;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -57,7 +58,10 @@ class User extends Authenticatable
         $this->confirmed = true;
         $this->save();
     }
-
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
     public function roles()
     {
         return $this->belongsToMany('App\Role'); 

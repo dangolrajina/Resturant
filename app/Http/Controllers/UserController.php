@@ -15,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->get();
+        $users = \DB::table('users')
+                     ->join('orders', 'users.id', '=', 'orders.user_id')
+                     ->get();
         return view('admin.user.index',compact('users'));
     }
 

@@ -23,10 +23,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function view()
+    public function view($category = null)
     
     {
-        return view('welcome');
+
+        $menus = $this->getCategory($category);
+        return view('welcome',compact('menus'));
 
     }
 
@@ -43,18 +45,14 @@ class HomeController extends Controller
         return view('layouts.aboutus');
     }
 
-    public function menu()
+    public function menu($category = null)
     {
-
         $categories = Category::all();
-        $menus = Menu::all();
+        $menus = $this->getCategory($category);
         return view('menu.menu',compact('categories','menus'));
     }
 
-    public function contact()
-    {
-        return view('layouts.contactus');
-    }
+   
 
     // public function viewcart()
     // {
@@ -75,6 +73,15 @@ class HomeController extends Controller
     //     return redirect('/cartview');
     // }
 
-
+    public function getCategory($category = null)
+    {
+        if ($category) {
+            $categoryId = Category::where('slug',$category)->first()->id; //1
+            $menus = Menu::where('category_id',1)->latest()->get();
+        }else{
+            $menus = Menu::latest()->get();
+        }
+        return $menus;
+    }
     
 }

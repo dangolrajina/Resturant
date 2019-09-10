@@ -20,8 +20,8 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-4 form-group">
-                            <div class="input-append date form_datetime">
-                                <input size="16" type="text" value="" readonly placeholder="Date" name="date">
+                            <div class="">
+                                <input size="16" type="date" name="date">
                                 <span class="add-on"><i class="icon-th"></i></span>
                             </div>
                         </div>

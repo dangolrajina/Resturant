@@ -49,7 +49,7 @@
                     <div class="col-md-6">
                         <div class="row contact_form_area">
                             <h3 class="contact_title">Send Message</h3>
-                            <form action="contact_process.php" method="post" id="contactForm">
+                            <form action="/contact" method="post" id="contactForm">
                                 <div class="form-group col-md-12">
                                   <input type="text" class="form-control" id="name" name="name" placeholder="First Name*">
                                 </div>

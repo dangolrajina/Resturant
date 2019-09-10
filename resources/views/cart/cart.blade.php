@@ -50,16 +50,18 @@
 						</td>
 						<td class="cart_quantity">
 							<div  class="cart_quantity_button">
-								{{-- <a class="cart_quantity_up" href=""> + </a> --}}
-								<input class="cart_quantity_input" type="text" name="quantity" value="1"autocomplete="off" size="2">
-								{{-- <a class="cart_quantity_down" href=""> - </a> --}}
+								<a class="cart_quantity_up" href="{{url('/cart/update-quantity/'.$order->id.'/1')}}"> + </a>
+								<input class="cart_quantity_input" type="text" name="quantity" value="{{$order->quantity}}"autocomplete="off" size="2">
+								@if($order->quantity>1)
+									<a class="cart_quantity_down" href="{{url('/cart/update-quantity/'.$order->id.'/-1')}}"> - </a>
+									@endif
 							</div>
 						</td>
 						<td class="cart_total">
 							<p class="cart_total_price">Rs.{{$order->price*$order->quantity}}</p>
 						</td>
 						<td class="cart_delete">
-							<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+							<a class="cart_quantity_delete" href="{{url('/cart/delete-cart/'.$order->id)}}}"><i class="fa fa-times"></i></a>
 						</td>
 					</tr>
 					<?php $total_amount = $total_amount + ($order->price*$order->quantity); ?>
@@ -80,8 +82,8 @@
 					<ul>
 						<li>Grand Total <span>Rs <?php echo $total_amount; ?> </span></li>
 					</ul>
-					<a class="btn btn-default update" href="">Update</a>
-					<a class="btn btn-default check_out" href="{{url('/')}}">Check Out</a>
+					{{-- <a class="btn btn-default update" href="">Update</a> --}}
+					<a class="btn btn-default check_out" href="{{url('/checkout')}}">Check Out</a>
 				</div>
 			</div>
 		</div>
